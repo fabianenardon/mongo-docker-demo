@@ -1,0 +1,18 @@
+
+version: '3'
+services:
+  mongo:
+    image: library/mongo:3.2.12
+    hostname: mongo
+    ports:
+      - "27017"
+  mongo-docker-demo:
+      image: mongo-docker-demo:latest
+      links:
+          - mongo
+  mongo-docker-demo-tests:
+      image: mongo-docker-demo-tests:latest
+      volumes:
+          - ~/.m2/repository:/m2/repository
+      links:
+          - mongo
